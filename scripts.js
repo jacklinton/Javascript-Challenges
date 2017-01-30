@@ -1,33 +1,32 @@
 //1.
 
 function stringy(length){
-	var str = ""
-	var num = "1"
+	var str = ""					//define an empty string variable
 
 	for (i = 1; i<=length; i++) {
 
-		if (i % 2 == 0) {
-			str += 0
-		} else {
-			str += 1
-		}
+		if (i % 2 == 0) {			//checks the value of i up to the 	
+			str += 0				//argument of the length of the string
+		} else {					//to see if it is evenly divisible by two
+			str += 1				//and then concatenates a 1 or 0 to the string
+		}							//according to the result
 		
 	}
 
-	console.log(str)
+	console.log(str)				//logs the result
 }
 
 //2. 
 
 function reversal(numb){
 
-	var str = numb.toString()
-
-	var arr = str.split("")
-
-	var spl = arr.reverse()
-
-	var arrayInt = []
+	var str = numb.toString()				//converts the input number into a string of values
+											//and then splits it into an array with one character
+	var arr = str.split("")					//in each index. Then it reverses the index. Defines a
+											//blank array.
+	var spl = arr.reverse()					//
+											//Changes each index value and changes it to an int
+	var arrayInt = []						//and then adds it onto the end of the array.
 
 	for (i = 0; i < spl.length; i++) {
 		var integr = parseInt(spl[i])
@@ -45,14 +44,14 @@ function reversal2(numb) {
 	var arrayJ = []
 	i = 0
 
-	while(Math.pow(10,i) < numb){
-		i++
-		k++
-	}
-
-	console.log(k)
-	
-	x = numb
+	while(Math.pow(10,i) < numb){				//Calculates the length of the number input as the original argument.
+		i++										//
+		k++										//Finds remainder of original number / 10 and puts it into the array.
+	}											//Then subtracts that amount from the original number and divides by 10.
+												//It repeats that function for the length of the number. It effectives 
+	console.log(k)								//pares off each number from right to left.
+												//
+	x = numb									//
 
 	for(i = 1; i <= k; i++){
 
@@ -69,12 +68,88 @@ function reversal2(numb) {
 }
 
 //3.
+
 function foo(){
 
-	var fib = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
+	var fib = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]		//Takes Fib sequence as an array
 
-	for (i = 0; i < (fib.length - 1); i++){
+	for (i = 0; i < (fib.length - 1); i++){										//Logs each number into the console in order as 'fib[i] + fib[i+1] = fib[i + 2]'
 
 		console.log(fib[i] + " + " + fib[i+1] + " = " + (fib[i] + fib[i+1]))
 	}
+}
+
+function foo2(lowerBound, upperBound){
+
+	var x = lowerBound								//Takes lower and upper bounds as arguments. Lower bound should be zero for this excercize.
+	var y = lowerBound + 1							//Calculates and logs each step of the fib sequence until the sum is greater than the upper bound.
+	var z = null
+
+	for(i = 0; i <= upperBound; i){
+		console.log(x + " + " + y + " = " + (x+y))
+		z = x + y
+		x = y
+		y = z
+		i = z
+	}
+
+}
+
+//4.
+
+function checkCoupon(dateString, expDate, email){
+	this.dateString = dateString
+	this.expDate = expDate
+	this.email = email
+	var that = this;
+
+	this.checkDate = function(){
+		if (Date.parse(this.dateString) <= Date.parse(this.expDate)) {
+			return true
+		} else {
+			alert("This coupon is expired!")
+			return false
+		}
+	}
+
+	this.checkEmail = function(email) {
+		this.emailArr = this.email.split("@")
+		this.emailArr1 = this.emailArr[0]
+		this.emailArr2 = this.emailArr[1].split(".")
+		this.emailArr3 = this.emailArr2[0]
+		this.emailArr4 = this.emailArr2[1]
+
+		var first = this.emailArr1.split("")
+		//second = emailArr3.split("")
+		//third = emailArr4.split("")
+
+		var firstChar = first[0]
+
+		if (this.emailArr.length != 2) {
+			alert("The email address must contain an '@' symbol!")
+			return false
+
+		} else if (this.emailArr2.length != 2) {
+			alert("A valid email address must have a '.' after the '@'!")
+			return false
+
+		} else if (!isNaN(firstChar)) {
+			alert("A valid email cannot start with a number!")
+			return false
+
+		} else {
+			valid1 = /[a-z0-9_]+/i
+			
+			if (this.emailArr1.match(valid1) && this.emailArr3.match(valid1) && this.emailArr4.match(valid1)) {
+				return true
+
+			} else {		
+				alert("This email contains invalid characters!")
+				return false
+
+			}	
+		}
+	}
+
+
 }
