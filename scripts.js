@@ -98,13 +98,13 @@ function foo2(lowerBound, upperBound){
 //4.
 
 function checkCoupon(dateString, expDate, email){
-	this.dateString = dateString
-	this.expDate = expDate
+	this.dateString = new Date(dateString)
+	this.expDate = new Date(expDate)
 	this.email = email
 	var that = this;
 
 	this.checkDate = function(){
-		if (Date.parse(this.dateString) <= Date.parse(this.expDate)) {
+		if (Date.parse(dateString) <= Date.parse(expDate)) {
 			return true
 		} else {
 			alert("This coupon is expired!")
@@ -112,7 +112,7 @@ function checkCoupon(dateString, expDate, email){
 		}
 	}
 
-	this.checkEmail = function(email) {
+	this.checkEmail = function() {
 		this.emailArr = this.email.split("@")
 		this.emailArr1 = this.emailArr[0]
 		this.emailArr2 = this.emailArr[1].split(".")
@@ -150,6 +150,10 @@ function checkCoupon(dateString, expDate, email){
 			}	
 		}
 	}
-
+	this.check = function() {
+		if (this.checkDate() && this.checkEmail()) {
+			alert("Your coupon was accepted!")
+		}
+	}
 
 }
