@@ -97,7 +97,7 @@ function foo2(lowerBound, upperBound){
 
 //4.
 
-function checkCoupon(dateString, expDate, email){
+function checkCoupon(dateString, expDate, email){				//checkCoupon object
 	this.dateString = new Date(dateString)
 	this.expDate = new Date(expDate)
 	this.email = email
@@ -105,8 +105,8 @@ function checkCoupon(dateString, expDate, email){
 
 	this.checkDate = function(){
 		if (Date.parse(dateString) <= Date.parse(expDate)) {
-			return true
-		} else {
+			return true											//Uses the Date.parse function to compare the expiration date to the 
+		} else {												//input current date.
 			alert("This coupon is expired!")
 			return false
 		}
@@ -125,36 +125,37 @@ function checkCoupon(dateString, expDate, email){
 		var firstChar = first[0]
 
 		if (this.emailArr.length != 2) {
-			alert("The email address must contain an '@' symbol!")
+			alert("The email address must contain an '@' symbol!")	//A series of checks for the checkpoints above. Throws an alert if the email is invalid in some way.
 			return false
-
+		}
 		this.emailArr2 = this.emailArr[1].split(".")
 
-		} else if (this.emailArr2.length != 2) {
+		if (this.emailArr2.length != 2) {							//check that there are at least two word characters on either side of the period.
 			alert("A valid email address must have a '.' after the '@'!")
 			return false
-
+		}
 		this.emailArr3 = this.emailArr2[0]
 		this.emailArr4 = this.emailArr2[1]
-		
-		} else if (!isNaN(firstChar)) {
+
+		if (!isNaN(firstChar)) {								//Makes sure email doesn't start with a number.
 			alert("A valid email cannot start with a number!")
 			return false
 
 		} else {
 			valid1 = /[a-z0-9_]+/i
-			
-			if (this.emailArr1.match(valid1) && this.emailArr3.match(valid1) && this.emailArr4.match(valid1)) {
-				return true
+			valid2 = /[a-z0-9_-]+/i
 
-			} else {		
+			if (this.emailArr1.match(valid1) && this.emailArr3.match(valid2) && this.emailArr4.match(valid1)) { //Takes the remaining pieces of the email address 																								
+				return true																						//and checks to make sure it only uses acceptible characters.
+
+			} else {																							//From http://regexr.com/
 				alert("This email contains invalid characters!")
 				return false
 
 			}	
 		}
 	}
-	this.check = function() {
+	this.check = function() {								//Simply run checkCoupon.check() to go through the whole process.
 		if (this.checkDate() && this.checkEmail()) {
 			alert("Your coupon was accepted!")
 		}
