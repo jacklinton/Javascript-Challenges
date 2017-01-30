@@ -114,10 +114,9 @@ function checkCoupon(dateString, expDate, email){
 
 	this.checkEmail = function() {
 		this.emailArr = this.email.split("@")
-		this.emailArr1 = this.emailArr[0]
-		this.emailArr2 = this.emailArr[1].split(".")
-		this.emailArr3 = this.emailArr2[0]
-		this.emailArr4 = this.emailArr2[1]
+		this.emailArr1 = this.emailArr[0]				//splits the email up into sections with "@", ".", the first character as dividers. 
+		
+		
 
 		var first = this.emailArr1.split("")
 		//second = emailArr3.split("")
@@ -129,10 +128,15 @@ function checkCoupon(dateString, expDate, email){
 			alert("The email address must contain an '@' symbol!")
 			return false
 
+		this.emailArr2 = this.emailArr[1].split(".")
+
 		} else if (this.emailArr2.length != 2) {
 			alert("A valid email address must have a '.' after the '@'!")
 			return false
 
+		this.emailArr3 = this.emailArr2[0]
+		this.emailArr4 = this.emailArr2[1]
+		
 		} else if (!isNaN(firstChar)) {
 			alert("A valid email cannot start with a number!")
 			return false
